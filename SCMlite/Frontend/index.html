@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup and Login Pages</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-image: url('rm222-mind-16.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.container {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 5vh;
+    left: 26vw;
+    width: 50vw;
+    height: 60vh;
+    position: relative;
+    /* border: 2px solid; */
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgb(27, 27, 27);
+    color: black;
+    background-color: transparent;
+    font-size: 1.2rem;
+}
+
+.input-boxes{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    width: 60%;
+}
+input {
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    /* background-color: rgba(235, 232, 232, 0.879); */
+    background-color: white;
+}
+#title {
+    align-items: center;
+    color: black;
+    font-size: 2rem;
+    margin-top: 10vh;
+    margin-left: 45vw;
+}
+/* Register part */
+.signup {
+    height: 100%;
+    border-radius: 10px;
+    width: 50%;
+}
+
+#registerform {
+    position: relative;
+    top: -60vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid; */
+    z-index: -1;
+    
+}
+
+#registercover{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    background-color: red;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+#register-btn {
+    width: 150px;
+    height: 45px;
+    background-color:white;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+
+#register-btn:hover {
+    background-color: rgb(223, 220, 220);
+}
+#passnomatch {
+    color: red;
+    visibility:hidden;
+    font-size: 1rem;
+}
+
+#rolediv {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+#role {
+    height: 15px;
+    width: 15px;
+}
+#signupbtn {
+    width: 150px;
+    height: 45px;
+    background-color:rgb(244, 2, 2);
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+/* register part ends */
+/* login page */
+
+.login {
+    height: 100%;
+    border-radius: 10px;
+    width: 50%;
+    background-color: transparent;
+}
+
+#login-cover{
+    /* border: 2px solid; */
+    border-radius: 10px;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: -1;
+    background-color: red;
+    font-size: 1rem;
+}
+
+#loginform{
+    position: relative;
+    top: -60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* border: 2px solid; */
+    border-radius: 10px;
+}
+
+#signin-submitbtn{
+    position: relative;
+    top: 15px;
+    width: 150px;
+    height: 45px;
+    background-color: rgb(244, 2, 2);
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    color:white;
+}
+#signin-submitbtn:hover {
+    background-color: rgba(149, 2, 2, 0.797);
+}
+#signin-btn {
+    width: 150px;
+    height: 45px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+}
+#signin-btn:hover {
+    background-color: rgb(223, 220, 220);
+}
+/* Login ends */
+img {
+    position: absolute;
+    bottom: 15px;
+    left: 45vw;
+}
+/* Animations*/
+@keyframes slideleft {
+    from {
+        left: 50vw;
+        opacity: 1;
+    }
+    to {
+        left: 20vw;
+        opacity: 0;
+    }
+}
+
+@keyframes slideright {
+    from {
+        left: 0vw;
+    }
+    to {
+        left: 30vw;
+    }
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+        z-index: -1;    
+    }
+    to {
+        opacity: 1;
+        z-index: 1;    
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;   
+    }
+    to {
+        opacity: 0;
+        z-index: -1;    
+    }
+}
+    </style>
+</head>
+<body>
+    <h1 id="title">SCMXpertlite</h1>
+    <div class="container">
+        <!-- Login Section -->
+        <div class="login">
+            <div id="login-cover">
+                <h2>Already have an account?</h2>
+                <button id="signin-btn" onclick="slideright()">Sign in !</button>
+            </div>
+            <form id="loginform">
+                <h2>Sign In Now</h2>
+                <div class="input-boxes">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" />      
+                </div>
+                <div class="input-boxes">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" />
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LdnWpkqAAAAACMhVtIBHVFhIZRgJAR7gTcU6lur"></div>
+                <button type="submit" id="signin-submitbtn">Sign In</button>
+            </form>   
+        </div>
+        
+        <!-- Signup Section -->
+        <div class="signup">
+            <div id="registercover">
+                <h2>Create your account !</h2>
+                <button type="button" id="register-btn" onclick="slideleft()">Register</button>
+            </div>
+            <form id="registerform">
+                <h2>Create Account</h2>
+                <div class="input-boxes">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name" />
+                </div>
+                <div class="input-boxes">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" />
+                </div>
+               <div class="input-boxes">
+                <label for="password">Create Password</label>
+                <input type="password" id="password" placeholder="Enter new password" />
+                <span id="passnomatch">Passwords do not match !!!</span>
+               </div> 
+               <div class="input-boxes">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm new password" />
+               </div> 
+               <div id="rolediv">
+                <input type="checkbox" id="role"/>
+                <label for="role">Root account ?</label>
+               </div>
+                <button type="submit" id="signupbtn">Sign Up</button>
+            </form>
+        </div>   
+    </div>
+    <img src="exf_logo.webp"  width="200px" height="100px">
+</body>
+<script>
+    // Login form js //
+// ..........................................................................................//
+
+
+function slideleft() {
+    const registercover = document.getElementById('registercover');
+    const logincover = document.getElementById('login-cover');
+    const registerform = document.getElementById('registerform');
+    const loginform = document.getElementById('loginform')
+
+    registercover.style.animation = 'slideleft 1s ease-out forwards';
+    registerform.style.animation = 'appear 1s ease-out forwards';
+    loginform.style.animation = 'disappear 1s ease-out forwards';
+    logincover.style.animation = 'appear 1s ease-in forwards';
+}
+
+function slideright() {
+    const registercover = document.getElementById('registercover');
+    const logincover = document.getElementById('login-cover');
+    const registerform = document.getElementById('registerform');
+    const loginform = document.getElementById('loginform')
+
+    registercover.style.animation = 'appear 1s ease-in forwards';
+    logincover.style.animation = 'slideright 1s ease-in forwards';
+    registerform.style.animation = 'disappear 1s ease-out forwards';
+    loginform.style.animation = 'appear 1s ease-in forwards';
+}
+
+const apiUrl = 'http://127.0.0.1:8000';
+
+
+
+document.getElementById('loginform').addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    try {
+      
+        const recaptchaResponse = grecaptcha.getResponse();
+
+        if (recaptchaResponse.length === 0) {
+            alert('Please complete the reCAPTCHA.');
+            return;
+        }
+
+        const loginData = {
+            email: email,
+            password: password,
+            recaptcha_token: recaptchaResponse 
+        };
+
+        const response = await fetch('http://127.0.0.1:8000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Correct content type for JSON
+            },
+            body: JSON.stringify(loginData) // Send data as JSON
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(`Login successful!`);
+            localStorage.setItem('jwt_token', data.access_token);
+            localStorage.setItem('name', data.name);
+            window.location.href = "home.html";
+        } else {
+            const errorData = await response.json();
+            alert(`Login failed: ${errorData.detail || 'Unknown error'}`);
+        }
+    } catch (error) {
+        console.error('Network error:', error);
+    }
+});
+
+
+
+document.getElementById('registerform').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent the default form submission behaviour
+
+    const fullname = document.getElementById('full-name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmpassword = document.getElementById('confirm-password').value;
+    const role = document.getElementById('role').checked;
+
+    const registerData = {
+        username: fullname,
+        email : email,
+        password: password,
+        admin : role
+    };
+
+   if (password == confirmpassword) {
+    
+    const response = await fetch('http://127.0.0.1:8000/register', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( registerData ),
+      });
+
+      const result = await response.json();
+      alert(result.message);
+   } else {
+    document.getElementById('passnomatch').style.visibility = "visible";
+   }
+})
+
+//Login js ends //
+</script>
+</html>

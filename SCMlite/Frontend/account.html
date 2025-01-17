@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Account</title>
+        <style>
+             * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            body {
+                overflow-y: hidden;
+                overflow-x: hidden;
+                background-image: url('rm222-mind-16.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-size: 1.2rem;
+            }
+            #header {
+                width: 100%;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                text-align: center;
+                background-color: rgba(255, 255, 255, 0.849);
+                padding-top: 35px;
+                height: 10vh;
+                font-size: 2rem;
+            }
+            #menumain {
+            position: fixed;
+            top: 0px;
+            left: 0vw;
+            width: 20vw;
+            height: 100%;
+            background-color: rgb(25, 25, 243);
+            gap: 5px;
+            opacity: 0;
+            transform: translateX(-100%); 
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1000;
+            }
+            #menumain.active {
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+            #menumainhead {
+                width: 100%;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: white;
+            }
+            #exshortmain {
+                width: 25%;
+                height: 100%;
+            }
+            .menuel {
+                width: 93.5%;
+                padding-top: 16px;
+                padding-bottom: 10px;
+                padding-left: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 15px;
+            }
+            .menuel:hover {
+                background-color: white;
+            }
+            #accele {
+                color: white;
+            }
+            #accele:hover {
+                color: black;
+            }
+            #svgacc{
+                fill: white;
+            }
+            #accele:hover svg {
+                fill: black;
+            }
+            #menushort {
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 5vw;
+                background-color: rgb(25, 25, 243);
+                display: flex;
+                flex-direction:column;
+                gap: 5px;
+                opacity: 1;
+                border: none;
+            }
+            #exshort {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: white;
+            }
+            .menushortel{
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+            #devdatshort {
+            display: none;
+            }
+            #devdatmain {
+                display: none;
+            }
+            #acccont {
+                position: fixed;
+                top: 20vh;
+                left: 20vw;
+                width: 60vw;
+                height: 50vh;
+                font-size: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                background-color: rgba(255, 255, 255, 0.799);
+                box-shadow: 0 0 20px;
+            }
+            #accinf {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 50%;
+                justify-content: space-evenly;
+            }
+            .contel {
+                padding: 20px;
+
+            }
+            #exafluencefull {
+            position: absolute;
+            bottom: 15px;
+            left: 45vw;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="header">Account Details</div>
+        <div id="menushort">
+            <img src="exfshort.png" id="exshort">
+            <svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="100%" fill="undefined" class="menushortel"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="100%" fill="undefined" class="menushortel"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="100%" fill="undefined" class="menushortel"><path d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="100%" fill="undefined" class="menushortel" id="devdatshort"><path d="M200-120q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h400v-160h80v160h80q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Zm80-40q17 0 28.5-11.5T320-280q0-17-11.5-28.5T280-320q-17 0-28.5 11.5T240-280q0 17 11.5 28.5T280-240Zm140 0q17 0 28.5-11.5T460-280q0-17-11.5-28.5T420-320q-17 0-28.5 11.5T380-280q0 17 11.5 28.5T420-240Zm140 0q17 0 28.5-11.5T600-280q0-17-11.5-28.5T560-320q-17 0-28.5 11.5T520-280q0 17 11.5 28.5T560-240Zm10-390-58-58q26-24 58-38t70-14q38 0 70 14t58 38l-58 58q-14-14-31.5-22t-38.5-8q-21 0-38.5 8T570-630ZM470-730l-56-56q44-44 102-69t124-25q66 0 124 25t102 69l-56 56q-33-33-76.5-51.5T640-800q-50 0-93.5 18.5T470-730ZM200-200v-160 160Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="100%" fill="white" class="menushortel"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+        </div>
+        <div id="menumain">
+            <div id="menumainhead"><img src="exfshort.png" id="exshortmain"> Exafluence</div>
+            <div class="menuel" onclick="home()"><svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="11%" fill="undefined"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>Dashboard</div>
+            <div class="menuel" onclick="allshipments()"><svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="11%" fill="undefined"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>My Shipments</div>
+            <div class="menuel" onclick="creship()"><svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="11%" fill="undefined"><path d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z"/></svg>Create Shipments</div>
+            <div class="menuel" onclick="devdatstr()" id="devdatmain"><svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="11%" fill="undefined"><path d="M200-120q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h400v-160h80v160h80q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Zm80-40q17 0 28.5-11.5T320-280q0-17-11.5-28.5T280-320q-17 0-28.5 11.5T240-280q0 17 11.5 28.5T280-240Zm140 0q17 0 28.5-11.5T460-280q0-17-11.5-28.5T420-320q-17 0-28.5 11.5T380-280q0 17 11.5 28.5T420-240Zm140 0q17 0 28.5-11.5T600-280q0-17-11.5-28.5T560-320q-17 0-28.5 11.5T520-280q0 17 11.5 28.5T560-240Zm10-390-58-58q26-24 58-38t70-14q38 0 70 14t58 38l-58 58q-14-14-31.5-22t-38.5-8q-21 0-38.5 8T570-630ZM470-730l-56-56q44-44 102-69t124-25q66 0 124 25t102 69l-56 56q-33-33-76.5-51.5T640-800q-50 0-93.5 18.5T470-730ZM200-200v-160 160Z"/></svg>Device Data Stream</div>
+            <div class="menuel" id="accele" onclick="account()"><svg xmlns="http://www.w3.org/2000/svg" height="4%" viewBox="0 -960 960 960" width="11%" fill="undefined" id="svgacc"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>My Account</div>
+        </div>
+        <div id="acccont">
+            <div id="accinf">
+                <div class="contel">Username: <a id="username"></a></div>
+                <div class="contel">Email: <a id="email"></a></div>
+            </div>
+            <div>
+                <img src="account.png" width="300px" height="350px">
+            </div>
+        </div>
+        <img src="exf_logo.webp" id="exafluencefull"  width="200px" height="100px">
+    </body>
+    <script>
+         document.addEventListener('DOMContentLoaded', () => {
+        const menushort = document.getElementById('menushort');
+        const sideMenu = document.getElementById('menumain');
+
+        
+        const toggleMenu = (event) => {
+            sideMenu.classList.toggle('active');
+            menushort.style.opacity = '0';
+            event.stopPropagation(); 
+        };
+
+        // Function to close the menu
+        const closeMenu = () => {
+            sideMenu.classList.remove('active');
+            menushort.style.opacity = '1';
+        };
+
+        // Open or close the menu on button click
+        menushort.addEventListener('click', toggleMenu);
+
+        // Close the menu when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!sideMenu.contains(event.target)) {
+                closeMenu();
+            }
+        });
+
+        // Prevent menu clicks from propagating and closing the menu
+        sideMenu.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    });
+
+    async function adminVal() {
+        const token = localStorage.getItem('jwt_token');
+        try {
+            const response = await fetch('http://127.0.0.1:8000/adminval', {
+                method: 'GET', // Assuming the verification endpoint uses POST
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Failed to verify token: ${response.status}`);
+                return false;
+            }
+
+            const data = await response.json();
+            console.log(data);
+            return data; // Return true if the token is valid, false otherwise
+        } catch (error) {
+            console.error('Error during authentication check:', error);
+            return false; // On error, assume not authenticated
+        }
+    }
+
+    async function devdisplay() {
+        const isAdmin = await adminVal();
+        if (isAdmin) {
+            document.getElementById("devdatshort").style.display = "flex";
+            document.getElementById("devdatmain").style.display = "flex";
+            document.getElementById("devdat").style.display = "flex";
+            console.log("is true");
+        }
+    }
+
+    async function checkAuthentication() {
+        const token = localStorage.getItem('jwt_token');
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/protected', {
+                method: 'POST', // Assuming the verification endpoint uses POST
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Failed to verify token: ${response.status}`);
+                return false;
+            }
+
+            const data = await response.json();
+            return data.is_valid; // Return true if the token is valid, false otherwise
+        } catch (error) {
+            console.error('Error during authentication check:', error);
+            return false; // On error, assume not authenticated
+        }
+    }
+
+    async function home() {
+            const is_auth = await checkAuthentication();
+            
+            if (is_auth) {
+                console.log('Auth successful');
+                window.location.href= "home.html";    
+            } else {
+                alert('Login Expired, Login again');
+                window.location.href = "index.html";
+            }
+        }
+    async function creship() {
+            const is_auth = await checkAuthentication();
+            
+            if (is_auth) {
+                console.log('Auth successful');
+                window.location.href="creship.html";    
+            } else {
+                alert('Login Expired, Login again');
+                window.location.href = "index.html";
+            }
+        }
+
+    async function allshipments() {
+        const is_auth = await checkAuthentication();
+        
+        if (is_auth) {
+            console.log('Auth successful');
+            window.location.href="allshipments.html";    
+        } else {
+            alert('Login Expired, Login again');
+            window.location.href = "index.html";
+        }
+    }
+
+    async function devdatstr() {
+        const is_auth = await checkAuthentication();
+        
+        if (is_auth) {
+            console.log('Auth successful');
+            window.location.href="devdataste.html";    
+        } else {
+            alert('Login Expired, Login again');
+            window.location.href = "index.html";
+        }
+    }
+
+
+    
+    async function fetchUserInfo() {
+
+        const jwtToken = localStorage.getItem('jwt_token');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        try {
+            const response = await fetch("http://127.0.0.1:8000/userinfo", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log(data)
+            username.innerText = data.username;
+            email.innerText = data.email;
+        } catch (error) {
+            console.error("Error fetching user info:", error);
+        }
+    }
+window.addEventListener('load', fetchUserInfo);
+window.addEventListener('load', devdisplay);
+    </script>
+</html>

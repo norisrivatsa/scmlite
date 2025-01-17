@@ -1,0 +1,102 @@
+
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: fastapi-backend
+        image: cryonicartist501/scmlite-backend:latest
+        ports:
+            - "8000:8000"
+        depends_on:
+            - mongodb
+        environment:
+            - SCMproject_URI=mongodb://mongodb:27017/SCMproject
+            - User_database_URI=mongodb://mongodb:27017/user_database
+        networks:
+            - my_network
+            - db_network
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        container_name: frontend
+        image: cryonicartist501/scmlite-frontend:latest
+        ports:
+            - "3000:80"
+        depends_on:
+            - backend
+        volumes:
+            - ./frontend:/usr/share/nginx/html  # Mount for local development
+        networks:
+            - my_network
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo_data:/data/db
+        networks:
+            - db_network
+            - kafka_network
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        container_name: zookeeper
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+        ports:
+            - 2181:2181
+        networks:
+            - kafka_network
+        restart: on-failure
+    kafka:
+        image: confluentinc/cp-kafka:latest
+        container_name: kafka
+        depends_on:
+            - zookeeper
+        ports:
+            - "9092:9092"
+        networks:
+            - kafka_network
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+            KAFKA_MESSAGE_MAX_BYTES: 209715200  # 200MB
+            KAFKA_REPLICA_FETCH_MAX_BYTES: 209715200
+            KAFKA_FETCH_MAX_BYTES: 209715200
+        # healthcheck:
+        #     test: ["CMD", "curl", "-f", "http://localhost:9093"]
+        #     interval: 10s
+        #     retries: 5
+        #     start_period: 30s
+        #     timeout: 10s
+        restart: on-failure
+    python-kafka:
+        build: 
+            context: ./dokaf
+            dockerfile: Dockerfile
+        container_name: python-kafka
+        image: cryonicartist501/scmlite-python-kafka:latest
+        depends_on:
+            - kafka
+        # environment:
+        #     - KAFKA_BROKER=kafka:9092
+        networks:
+            - kafka_network
+
+volumes:
+    mongo_data:
+networks:
+    my_network:
+        driver: bridge
+    db_network:
+        driver: bridge
+    kafka_network:
+        driver: bridge
